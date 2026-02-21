@@ -1,0 +1,1307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Content Creator - Smartphone Freedom Lifestyle</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #ffffff;
+  background: #0a0a0a;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* ===== CSS VARIABLES ===== */
+:root {
+  --primary: #e8b600;
+  --primary-hover: #ffd234;
+  --dark-bg: #0a0a0a;
+  --card-bg: #141414;
+  --card-bg-alt: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-muted: #888888;
+  --accent-green: #22c55e;
+  --accent-blue: #3b82f6;
+  --accent-red: #ef4444;
+  --border-subtle: rgba(255,255,255,0.08);
+  --glow-gold: rgba(232,182,0,0.15);
+  --max-width: 1100px;
+  --section-padding: 80px 20px;
+}
+
+/* ===== UTILITY ===== */
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 20px; }
+.text-center { text-align: center; }
+.text-gold { color: var(--primary); }
+.text-muted { color: var(--text-secondary); }
+
+/* ===== ANNOUNCEMENT BAR ===== */
+.announcement-bar {
+  background: var(--primary);
+  color: #000;
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 0.5px;
+}
+.announcement-bar span { animation: pulse-text 2s ease-in-out infinite; display: inline-block; }
+@keyframes pulse-text { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+/* ===== HEADER / NAVBAR ===== */
+.navbar {
+  background: rgba(10,10,10,0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 14px 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.3px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo-icon {
+  width: 32px; height: 32px;
+  background: var(--primary);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links a {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  font-family: 'Montserrat', sans-serif;
+}
+.nav-links a:hover { color: #fff; }
+.nav-cta {
+  background: var(--primary) !important;
+  color: #000 !important;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.5px;
+  transition: all 0.25s;
+}
+.nav-cta:hover { background: var(--primary-hover) !important; transform: translateY(-1px); }
+
+.mobile-toggle { display: none; background: none; border: none; color: #fff; font-size: 24px; cursor: pointer; }
+
+/* ===== HERO SECTION ===== */
+.hero {
+  padding: 100px 20px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(circle, var(--glow-gold) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero > * { position: relative; z-index: 1; }
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(232,182,0,0.1);
+  border: 1px solid rgba(232,182,0,0.25);
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: 28px;
+  font-family: 'Montserrat', sans-serif;
+}
+.hero-badge .dot {
+  width: 8px; height: 8px;
+  background: var(--accent-green);
+  border-radius: 50%;
+  animation: blink 1.5s infinite;
+}
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+.hero h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(36px, 5.5vw, 62px);
+  font-weight: 900;
+  line-height: 1.08;
+  margin-bottom: 24px;
+  letter-spacing: -1.5px;
+}
+.hero h1 .highlight {
+  background: linear-gradient(135deg, var(--primary), #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 680px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+.hero-sub strong { color: #fff; }
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--primary);
+  color: #000;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 18px 42px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 30px rgba(232,182,0,0.3);
+}
+.cta-btn:hover {
+  background: var(--primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(232,182,0,0.4);
+}
+.cta-btn .arrow { font-size: 20px; transition: transform 0.3s; }
+.cta-btn:hover .arrow { transform: translateX(4px); }
+.hero-note {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  text-align: center;
+}
+.hero-stat .number {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--primary);
+}
+.hero-stat .label {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ===== VIDEO SECTION ===== */
+.video-section {
+  padding: 60px 20px 80px;
+}
+.video-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  background: var(--card-bg);
+  aspect-ratio: 16/9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+.video-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(232,182,0,0.05), rgba(0,0,0,0.5));
+}
+.play-btn {
+  position: relative; z-index: 2;
+  width: 80px; height: 80px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.3s;
+  box-shadow: 0 0 40px rgba(232,182,0,0.4);
+}
+.play-btn:hover { transform: scale(1.1); }
+.play-btn svg { width: 30px; height: 30px; fill: #000; margin-left: 4px; }
+.video-label {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  font-size: 14px;
+  color: rgba(255,255,255,0.7);
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ===== SOCIAL PROOF BAR ===== */
+.social-proof {
+  padding: 40px 20px;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--card-bg);
+}
+.social-proof .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.proof-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.proof-item .icon {
+  font-size: 20px;
+}
+.proof-item strong { color: #fff; }
+.stars { color: var(--primary); letter-spacing: 2px; }
+
+/* ===== WHAT YOU GET SECTION ===== */
+.what-you-get {
+  padding: var(--section-padding);
+}
+.section-label {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 20px;
+  letter-spacing: -0.5px;
+}
+.section-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto 50px;
+  line-height: 1.7;
+}
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.feature-card {
+  background: var(--card-bg-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  padding: 32px;
+  transition: all 0.3s;
+}
+.feature-card:hover {
+  border-color: rgba(232,182,0,0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.feature-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+  margin-bottom: 18px;
+}
+.feature-icon.gold { background: rgba(232,182,0,0.12); }
+.feature-icon.blue { background: rgba(59,130,246,0.12); }
+.feature-icon.green { background: rgba(34,197,94,0.12); }
+.feature-icon.red { background: rgba(239,68,68,0.12); }
+.feature-icon.purple { background: rgba(168,85,247,0.12); }
+.feature-icon.teal { background: rgba(20,184,166,0.12); }
+.feature-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.feature-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ===== RESULTS / TESTIMONIALS ===== */
+.results-section {
+  padding: var(--section-padding);
+  background: linear-gradient(180deg, var(--dark-bg) 0%, #0f0f0f 100%);
+}
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.result-card {
+  background: var(--card-bg-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+.result-card:hover {
+  border-color: rgba(232,182,0,0.15);
+  transform: translateY(-2px);
+}
+.result-image {
+  height: 220px;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.result-image .metric {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 42px;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--primary), #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.result-image .metric-label {
+  position: absolute;
+  bottom: 12px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.result-body { padding: 24px; }
+.result-body .quote {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.result-body .author {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+.result-body .author-detail {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ===== HOW IT WORKS ===== */
+.how-it-works {
+  padding: var(--section-padding);
+}
+.steps {
+  display: flex;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.step {
+  flex: 1;
+  min-width: 250px;
+  text-align: center;
+  padding: 30px;
+  position: relative;
+}
+.step-number {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: rgba(232,182,0,0.1);
+  border: 2px solid var(--primary);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--primary);
+  margin: 0 auto 20px;
+}
+.step h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.step p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+
+/* ===== BONUSES ===== */
+.bonuses {
+  padding: var(--section-padding);
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.bonus-list {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.bonus-item {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  background: var(--card-bg-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 14px;
+  padding: 24px;
+  transition: all 0.3s;
+}
+.bonus-item:hover {
+  border-color: rgba(232,182,0,0.2);
+}
+.bonus-icon {
+  flex-shrink: 0;
+  width: 48px; height: 48px;
+  background: rgba(232,182,0,0.1);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+.bonus-item h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.bonus-item p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.bonus-item .value {
+  font-size: 12px;
+  color: var(--primary);
+  font-weight: 700;
+  margin-top: 6px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* ===== PRICING / CTA SECTION ===== */
+.pricing-section {
+  padding: 100px 20px;
+  text-align: center;
+  position: relative;
+}
+.pricing-section::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, var(--glow-gold) 0%, transparent 70%);
+  pointer-events: none;
+}
+.pricing-section > * { position: relative; z-index: 1; }
+.pricing-box {
+  max-width: 520px;
+  margin: 40px auto 0;
+  background: var(--card-bg-alt);
+  border: 2px solid var(--primary);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 0 60px rgba(232,182,0,0.1);
+}
+.pricing-box .original-price {
+  font-size: 18px;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  margin-bottom: 4px;
+}
+.pricing-box .price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 56px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+}
+.pricing-box .price sup {
+  font-size: 28px;
+  vertical-align: super;
+}
+.pricing-box .price-note {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  margin-bottom: 28px;
+}
+.pricing-box .cta-btn {
+  width: 100%;
+  justify-content: center;
+  font-size: 17px;
+  padding: 20px;
+}
+.guarantee {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.guarantee .shield { font-size: 18px; }
+.pricing-features {
+  text-align: left;
+  margin: 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.pricing-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+.pricing-feature .check {
+  color: var(--accent-green);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* ===== FAQ ===== */
+.faq-section {
+  padding: var(--section-padding);
+  background: var(--card-bg);
+  border-top: 1px solid var(--border-subtle);
+}
+.faq-list {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.faq-item {
+  background: var(--card-bg-alt);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.faq-question {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  transition: color 0.2s;
+  user-select: none;
+}
+.faq-question:hover { color: var(--primary); }
+.faq-question .toggle {
+  font-size: 20px;
+  transition: transform 0.3s;
+  color: var(--primary);
+}
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+}
+.faq-answer.open { max-height: 300px; }
+.faq-answer-inner {
+  padding: 0 24px 20px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* ===== ABOUT / FOUNDER ===== */
+.about-section {
+  padding: var(--section-padding);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 50px;
+  max-width: 900px;
+  margin: 0 auto;
+  align-items: center;
+}
+.about-image {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border-radius: 20px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.about-image .initials {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 80px;
+  font-weight: 900;
+  color: rgba(232,182,0,0.15);
+}
+.about-content h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.about-content .role {
+  color: var(--primary);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 20px;
+}
+.about-content p {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 16px;
+}
+
+/* ===== FINAL CTA ===== */
+.final-cta {
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(180deg, var(--dark-bg), #0d0d0d);
+  border-top: 1px solid var(--border-subtle);
+}
+.final-cta h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  margin-bottom: 16px;
+}
+.final-cta p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 550px;
+  margin: 0 auto 32px;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 20px;
+  border-top: 1px solid var(--border-subtle);
+  background: #050505;
+}
+.footer .container {
+  text-align: center;
+}
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+.footer-links a {
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--primary); }
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.footer-social a {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-subtle);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  font-size: 16px;
+}
+.footer-social a:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+.footer-legal {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .mobile-toggle { display: block; }
+  .nav-links.open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: #0a0a0a;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    gap: 16px;
+  }
+  .hero { padding: 60px 20px; }
+  .hero-stats { gap: 30px; }
+  .features-grid { grid-template-columns: 1fr; }
+  .results-grid { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; gap: 30px; }
+  .about-image { max-width: 300px; margin: 0 auto; }
+  .steps { flex-direction: column; align-items: center; }
+}
+
+/* ===== ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- Announcement Bar -->
+<div class="announcement-bar">
+  <span>🔥 LIMITED TIME: Get lifetime access to the AI Content Creator system — 83% OFF today only!</span>
+</div>
+
+<!-- Navbar -->
+<nav class="navbar">
+  <div class="container">
+    <a href="#" class="logo">
+      <div class="logo-icon">📱</div>
+      Smartphone Freedom Lifestyle
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#features">What You Get</a>
+      <a href="#results">Results</a>
+      <a href="#faq">FAQ</a>
+      <a href="#pricing" class="nav-cta">GET ACCESS NOW</a>
+    </div>
+    <button class="mobile-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      JOIN 2,000+ CREATORS
+    </div>
+    <h1>
+      Become an <span class="highlight">AI Content Creator</span><br>
+      & Go Viral With AI
+    </h1>
+    <p class="hero-sub">
+      Step-by-step templates, AI systems, and <strong>1-on-1 coaching</strong> to help you grow on
+      Instagram, TikTok & YouTube — <strong>even if you're starting from zero.</strong>
+    </p>
+    <a href="#pricing" class="cta-btn">
+      GET INSTANT ACCESS
+      <span class="arrow">→</span>
+    </a>
+    <p class="hero-note">One-time payment · Lifetime access · 60-day money-back guarantee</p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="number">35,000+</div>
+        <div class="label">People Helped</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">2,000+</div>
+        <div class="label">Active Creators</div>
+      </div>
+      <div class="hero-stat">
+        <div class="number">5 ★</div>
+        <div class="label">Trustpilot Rating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Video Section -->
+<section class="video-section">
+  <div class="video-wrapper" id="videoPlayer">
+    <div class="play-btn">
+      <svg viewBox="0 0 24 24"><polygon points="8,5 20,12 8,19"/></svg>
+    </div>
+    <div class="video-label">▶ Watch: How ordinary creators are getting extraordinary results</div>
+  </div>
+</section>
+
+<!-- Social Proof Bar -->
+<div class="social-proof">
+  <div class="container">
+    <div class="proof-item">
+      <span class="icon">⭐</span>
+      <span><strong>5.0</strong> on Trustpilot</span>
+    </div>
+    <div class="proof-item">
+      <span class="stars">★★★★★</span>
+      <span><strong>241</strong> verified reviews</span>
+    </div>
+    <div class="proof-item">
+      <span class="icon">🌍</span>
+      <span>Creators from <strong>50+ countries</strong></span>
+    </div>
+    <div class="proof-item">
+      <span class="icon">🎯</span>
+      <span>Any niche. Any language.</span>
+    </div>
+  </div>
+</div>
+
+<!-- What You Get Section -->
+<section class="what-you-get text-center" id="features">
+  <div class="container">
+    <span class="section-label">WHAT'S INCLUDED</span>
+    <h2 class="section-title">Everything You Need to<br><span class="text-gold">Go Viral With AI</span></h2>
+    <p class="section-subtitle">A complete system designed for creators who want results without the guesswork.</p>
+
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon gold">🤖</div>
+        <h3>AI Content Creation System</h3>
+        <p>Our powerful AI tools do 80% of the work for you — from generating content ideas to writing scripts and captions that are designed to go viral.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon blue">🎯</div>
+        <h3>60 Instant Viral Templates</h3>
+        <p>Plug-and-play templates based on analyzing thousands of viral posts. Just fill in the blanks and post — no creativity or experience required.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon green">👤</div>
+        <h3>1-on-1 Personal Coaching</h3>
+        <p>Get matched with a dedicated coach who guides you every step of the way with personalized strategies for your unique niche and goals.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon red">🎬</div>
+        <h3>Faceless Video Blueprint</h3>
+        <p>Learn how to create viral content without ever showing your face. Build a following while maintaining your privacy using AI and simple tools.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon purple">📋</div>
+        <h3>30 Personalized Content Ideas</h3>
+        <p>Your first 30 content ideas generated specifically for your niche and personality — so you never stare at a blank screen again.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon teal">📊</div>
+        <h3>101 Viral Case Study Vault</h3>
+        <p>Real examples of what's working right now across every niche. See exactly how real people are using these templates to go viral.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Results Section -->
+<section class="results-section text-center" id="results">
+  <div class="container">
+    <span class="section-label">REAL RESULTS</span>
+    <h2 class="section-title">Ordinary Creators Getting<br><span class="text-gold">Extraordinary Results</span></h2>
+    <p class="section-subtitle">Any niche. Any language. With or without showing your face.</p>
+
+    <div class="results-grid">
+      <div class="result-card fade-in">
+        <div class="result-image">
+          <span class="metric">859K</span>
+          <span class="metric-label">Views on a Single Reel</span>
+        </div>
+        <div class="result-body">
+          <p class="quote">"The templates made it so easy. I never expected a single reel to explode like that. The AI system saved me hours of guesswork."</p>
+          <p class="author">AI Content Creator Student</p>
+          <p class="author-detail">Faceless Niche · Started from zero</p>
+        </div>
+      </div>
+      <div class="result-card fade-in">
+        <div class="result-image">
+          <span class="metric">$67K</span>
+          <span class="metric-label">Record Month Revenue</span>
+        </div>
+        <div class="result-body">
+          <p class="quote">"Celebrating a record month of $67K with support from the team. The coaching and templates completely changed my content game."</p>
+          <p class="author">Coaching Business Owner</p>
+          <p class="author-detail">1-on-1 Coaching Client</p>
+        </div>
+      </div>
+      <div class="result-card fade-in">
+        <div class="result-image">
+          <span class="metric">346K</span>
+          <span class="metric-label">Views on Instagram</span>
+        </div>
+        <div class="result-body">
+          <p class="quote">"The viral templates are practical, easy to follow, and actually help you create posts that get attention and engagement."</p>
+          <p class="author">Verified Template User</p>
+          <p class="author-detail">Grew from 0 to 10K followers</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-it-works text-center">
+  <div class="container">
+    <span class="section-label">HOW IT WORKS</span>
+    <h2 class="section-title">3 Simple Steps to<br><span class="text-gold">Content That Goes Viral</span></h2>
+    <p class="section-subtitle">No tech skills needed. No experience required. Just follow the system.</p>
+
+    <div class="steps">
+      <div class="step fade-in">
+        <div class="step-number">1</div>
+        <h3>Pick a Template</h3>
+        <p>Choose from 60 proven viral templates designed for any niche. Each one is backed by data from thousands of successful posts.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-number">2</div>
+        <h3>Let AI Do the Work</h3>
+        <p>Our AI system generates your content, writes your script, and creates your captions. It does 80% of the heavy lifting for you.</p>
+      </div>
+      <div class="step fade-in">
+        <div class="step-number">3</div>
+        <h3>Post & Grow</h3>
+        <p>Follow the copy-and-paste posting playbook. Your coach guides you through optimizing for maximum reach and engagement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About / Founder -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image">
+        <span class="initials">MT</span>
+      </div>
+      <div class="about-content">
+        <span class="section-label">YOUR MENTOR</span>
+        <h3>Max Tornow</h3>
+        <p class="role">Entrepreneur · Content Strategist · Founder</p>
+        <p>From growing up in a small Austrian village to building multiple 7-figure brands, Max has personally generated millions of views, followers, and sales across Instagram, TikTok, YouTube, and beyond.</p>
+        <p>Today, he mentors thousands of creators worldwide, sharing the exact systems, strategies, and AI tools he uses inside his own businesses — so you don't have to guess what works.</p>
+        <p>Max believes that financial and lifestyle freedom should be accessible to anyone, no matter your niche, your language, or whether you show your face on camera.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bonuses -->
+<section class="bonuses text-center" id="bonuses">
+  <div class="container">
+    <span class="section-label">EXCLUSIVE BONUSES</span>
+    <h2 class="section-title">Plus These <span class="text-gold">Free Bonuses</span></h2>
+    <p class="section-subtitle">Included at no extra cost when you get access today.</p>
+
+    <div class="bonus-list">
+      <div class="bonus-item fade-in">
+        <div class="bonus-icon">📱</div>
+        <div>
+          <h4>Perfect Profile Template</h4>
+          <p>Optimize your profile so you never lose audiences after they land on your page. Convert viewers to followers instantly.</p>
+          <p class="value">VALUE: $197</p>
+        </div>
+      </div>
+      <div class="bonus-item fade-in">
+        <div class="bonus-icon">📋</div>
+        <div>
+          <h4>Copy-and-Paste Posting Playbook</h4>
+          <p>A complete, done-for-you schedule and strategy. Know exactly what to post, when to post it, and how to maximize every piece of content.</p>
+          <p class="value">VALUE: $297</p>
+        </div>
+      </div>
+      <div class="bonus-item fade-in">
+        <div class="bonus-icon">🔄</div>
+        <div>
+          <h4>Lifetime Updates</h4>
+          <p>As algorithms change and new AI tools emerge, your templates and strategies stay current. Forever.</p>
+          <p class="value">VALUE: PRICELESS</p>
+        </div>
+      </div>
+      <div class="bonus-item fade-in">
+        <div class="bonus-icon">🎥</div>
+        <div>
+          <h4>Faceless Video Blueprint</h4>
+          <p>Create viral content without ever showing your face. Maintain your privacy while building a massive following.</p>
+          <p class="value">VALUE: $497</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="pricing-section" id="pricing">
+  <div class="container">
+    <span class="section-label">GET STARTED TODAY</span>
+    <h2 class="section-title">Ready to Become an<br><span class="text-gold">AI Content Creator?</span></h2>
+
+    <div class="pricing-box">
+      <p class="original-price">$97</p>
+      <p class="price"><sup>$</sup>17</p>
+      <p class="price-note">One-time payment · Lifetime access</p>
+
+      <div class="pricing-features">
+        <div class="pricing-feature">
+          <span class="check">✓</span>
+          <span>AI Content Creation System (80% done-for-you)</span>
+        </div>
+        <div class="pricing-feature">
+          <span class="check">✓</span>
+          <span>60 Instant Viral Templates</span>
+        </div>
+        <div class="pricing-feature">
+          <span class="check">✓</span>
+          <span>30 Personalized Content Ideas for Your Niche</span>
+        </div>
+        <div class="pricing-feature">
+          <span class="check">✓</span>
+          <span>Faceless Video Blueprint</span>
+        </div>
+        <div class="pricing-feature">
+          <span class="check">✓</span>
+          <span>Perfect Profile Template</span>
+        </div>
+        <div class="pricing-feature">
+          <span class="check">✓</span>
+          <span>101 Viral Case Study Vault</span>
+        </div>
+        <div class="pricing-feature">
+          <span class="check">✓</span>
+          <span>Copy-and-Paste Posting Playbook</span>
+        </div>
+        <div class="pricing-feature">
+          <span class="check">✓</span>
+          <span>Lifetime Updates</span>
+        </div>
+      </div>
+
+      <a href="#" class="cta-btn">
+        GET LIFETIME ACCESS — $17
+        <span class="arrow">→</span>
+      </a>
+
+      <div class="guarantee">
+        <span class="shield">🛡️</span>
+        60-Day No Questions Asked Money Back Guarantee
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section text-center" id="faq">
+  <div class="container">
+    <span class="section-label">FAQ</span>
+    <h2 class="section-title">Frequently Asked <span class="text-gold">Questions</span></h2>
+    <p class="section-subtitle">Still have questions? We've got answers.</p>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Do I need to show my face on camera?
+          <span class="toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">No! We include a complete Faceless Video Blueprint that teaches you how to create viral content without ever showing your face. Many of our most successful students create content completely anonymously using AI tools.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          I'm not tech-savvy. Can I still do this?
+          <span class="toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Absolutely. The templates are designed to be plug-and-play — just fill in the blanks and post. Our AI system handles the technical work, and your 1-on-1 coach is there to help with any questions. Many of our students started with zero experience.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          Does this work for any niche?
+          <span class="toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Yes. Our templates and AI systems are designed to work across any niche and any language. Whether you're in fitness, finance, cooking, coaching, or any other space — the viral principles are universal.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          What if it doesn't work for me?
+          <span class="toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">We offer a 60-day no questions asked money-back guarantee. If you're not satisfied for any reason, just let us know and we'll refund your purchase. Zero risk.</div>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          How is this different from other courses?
+          <span class="toggle">+</span>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Most courses give you theory. We give you a complete done-for-you system: AI tools that create your content, proven templates that eliminate guesswork, and a personal coach who holds your hand through every step. Plus, you get lifetime access and updates.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+  <div class="container">
+    <h2>Stop Guessing. <span class="text-gold">Start Growing.</span></h2>
+    <p>Join thousands of creators who are using AI to build their audience, grow their income, and live life on their own terms.</p>
+    <a href="#pricing" class="cta-btn">
+      GET INSTANT ACCESS — $17
+      <span class="arrow">→</span>
+    </a>
+    <p class="hero-note" style="margin-top: 16px;">One-time payment · Lifetime access · 60-day money-back guarantee</p>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-social">
+      <a href="https://www.youtube.com/@smartphone-freedom-lifestyle/" title="YouTube">▶</a>
+      <a href="https://www.facebook.com/smartphonefreedomlifestyle/" title="Facebook">f</a>
+      <a href="https://www.instagram.com/smartphone.freedom.lifestyle/" title="Instagram">📷</a>
+    </div>
+    <div class="footer-links">
+      <a href="#">Home</a>
+      <a href="#">Blog</a>
+      <a href="#">Reviews</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Member Login</a>
+    </div>
+    <p class="footer-legal">
+      Smartphone Freedom Lifestyle, part of: SOCIAL INFLUENCE CONSULTING LLC
+      3140 W MAIN ST, RIVERTON, WY, 82501 United States.<br><br>
+      This site is not a part of the Facebook website or Facebook Inc.
+      Additionally, this site is NOT endorsed by Facebook in any way.
+      FACEBOOK is a trademark of FACEBOOK, Inc.<br><br>
+      ©2026 Smartphone Freedom Lifestyle
+    </p>
+  </div>
+</footer>
+
+<script>
+// FAQ Toggle
+function toggleFaq(el) {
+  const answer = el.nextElementSibling;
+  const toggle = el.querySelector('.toggle');
+  const isOpen = answer.classList.contains('open');
+
+  // Close all others
+  document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-question .toggle').forEach(t => t.textContent = '+');
+
+  if (!isOpen) {
+    answer.classList.add('open');
+    toggle.textContent = '−';
+  }
+}
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    // Close mobile menu if open
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+
+// Video player placeholder interaction
+document.getElementById('videoPlayer').addEventListener('click', function() {
+  this.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);font-family:Montserrat,sans-serif;font-size:14px;position:relative;z-index:2;">Video player would load here</div>';
+});
+</script>
+</body>
+</html>
